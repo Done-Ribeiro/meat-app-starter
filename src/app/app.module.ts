@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ROUTES } from './app.routes'
 
@@ -17,18 +18,17 @@ import { MenuComponent } from './restaurant-detail/menu/menu.component';
 import { ShoppingCartComponent } from './restaurant-detail/shopping-cart/shopping-cart.component';
 import { MenuItemComponent } from './restaurant-detail/menu-item/menu-item.component';
 import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component';
+import { OrderComponent } from './order/order.component';
+import { RadioComponent } from './shared/radio/radio.component';
+import { DeliveryCostsComponent } from './order/delivery-costs/delivery-costs.component';
+import { RatingComponent } from './shared/rating/rating.component';
+import { OrderSumaryComponent } from './order-sumary/order-sumary.component';
+import { OrderItemsComponent } from './order/order-items/order-items.component';
+import { InputComponent } from './shared/input/input.component';
 
 import { RestaurantsService } from './restaurants/restaurants.service';
 import { ShoppingCartService } from './restaurant-detail/shopping-cart/shopping-cart.service';
-import { OrderComponent } from './order/order.component';
-import { FormsModule } from '@angular/forms';
-import { InputComponent } from './shared/input/input.component';
-import { RadioComponent } from './shared/radio/radio.component';
-import { OrderItemsComponent } from './order/order-items/order-items.component';
 import { OrderService } from './order/order.service';
-import { DeliveryCostsComponent } from './order/delivery-costs/delivery-costs.component';
-import { OrderSumaryComponent } from './order-sumary/order-sumary.component';
-import { RatingComponent } from './shared/rating/rating.component';
 
 
 
@@ -57,6 +57,7 @@ import { RatingComponent } from './shared/rating/rating.component';
     BrowserModule,
     HttpModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(ROUTES)
   ],
   providers: [RestaurantsService, ShoppingCartService, OrderService, { provide: LOCALE_ID, useValue: 'pt-BR' }],
