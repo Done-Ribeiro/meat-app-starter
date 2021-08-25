@@ -27,6 +27,4 @@ export class RestaurantComponent implements OnInit {
   ngOnInit() {
   }
 
-  
-
 }
