@@ -1,12 +1,10 @@
 "use strict";
 exports.__esModule = true;
-var jsonServer = require("json-server");
-// modulo capaz de ler arquivos do disco
-var fs = require("fs");
-// protocolo https
-var https = require("https");
-// importando o handleAuthentication
+var jsonServer = require("json-server"); // importando para tipar e ter ajuda do compilador
+var fs = require("fs"); // protocolo https
+var https = require("https"); // importando o handleAuthentication
 var auth_1 = require("./auth");
+var authz_1 = require("./authz");
 var server = jsonServer.create();
 var router = jsonServer.router('db.json');
 var middlewares = jsonServer.defaults();
@@ -18,6 +16,7 @@ server.use(jsonServer.bodyParser);
 // ao inves de passar funcao para o login com req e resp --> passa o handleAuthentication
 // middleware para login
 server.post('/login', auth_1.handleAuthentication);
+server.use('/orders', authz_1.handleAuthorization);
 // Use default router
 server.use(router);
 // referenciando a leitura das chaves

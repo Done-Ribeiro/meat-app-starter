@@ -1,12 +1,10 @@
-import * as jsonServer from 'json-server';
-// importando para tipar e ter ajuda do compilador
-import { Express } from 'express'
-// modulo capaz de ler arquivos do disco
-import * as fs from 'fs'
-// protocolo https
-import * as https from 'https'
-// importando o handleAuthentication
+import * as jsonServer from 'json-server';// importando para tipar e ter ajuda do compilador
+import { Express } from 'express'// modulo capaz de ler arquivos do disco
+import * as fs from 'fs'// protocolo https
+import * as https from 'https'// importando o handleAuthentication
+
 import { handleAuthentication } from './auth';
+import { handleAuthorization } from './authz';
 
 const server: Express = jsonServer.create()
 const router = jsonServer.router('db.json')
@@ -21,6 +19,7 @@ server.use(jsonServer.bodyParser)
 // ao inves de passar funcao para o login com req e resp --> passa o handleAuthentication
 // middleware para login
 server.post('/login', handleAuthentication)
+server.use('/orders', handleAuthorization)
 
 // Use default router
 server.use(router)

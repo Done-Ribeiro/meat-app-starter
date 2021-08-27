@@ -7,7 +7,7 @@ var User = /** @class */ (function () {
         this.name = name;
         this.password = password;
     }
-    // metodo pra comparar usuarios do login e retornar true
+    // metodo pra comparar usuarios do login
     User.prototype.matches = function (another) {
         return another !== undefined && // se ele existir
             another.email === this.email && // e as senhas forem iguais
@@ -16,6 +16,7 @@ var User = /** @class */ (function () {
     return User;
 }());
 exports.User = User;
+// tipamos a resposta --> [chave: valor] do tipo Usuario
 exports.users = {
     "juliana@gmail.com": new User('juliana@gmail.com', 'Juliana', 'juliana23'),
     "amanda@gmail.com": new User('amanda@gmail.com', 'Amanda', 'amanda21')
