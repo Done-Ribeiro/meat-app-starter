@@ -10,10 +10,13 @@ import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component'
 import { OrderSumaryComponent } from './order-sumary/order-sumary.component'
 import { NotFoundComponent } from './not-found/not-found.component'
 
+import { LoggedInGuard } from './security/loggedin.guard'
+
 export const ROUTES: Routes = [
   { path: '', component: HomeComponent },
+  //depois de fazer o login va para esta url --> /:to
+  { path: 'login/:to', component: LoginComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'restaurants', component: RestaurantsComponent },
   {
     path: 'restaurants/:id', component: RestaurantDetailComponent,
     children: [
@@ -22,10 +25,11 @@ export const ROUTES: Routes = [
       { path: 'reviews', component: ReviewsComponent }
     ]
   },
-  { path: 'order', loadChildren: './order/order.module#OrderModule' },
+  { path: 'restaurants', component: RestaurantsComponent },
+  { path: 'order', loadChildren: './order/order.module#OrderModule',
+      canLoad: [LoggedInGuard] },
   { path: 'order-sumary', component: OrderSumaryComponent },
   { path: 'about', loadChildren: './about/about.module#AboutModule' },
-
   //regra de wildcard --> precisa ficar no final pq é top-down
   { path: '**', component: NotFoundComponent }
 ]
