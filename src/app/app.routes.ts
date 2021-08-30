@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router'
 
 import { HomeComponent } from './home/home.component'
+import { LoginComponent } from './security/login/login.component'
+
 import { RestaurantsComponent } from './restaurants/restaurants.component'
 import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail.component'
 import { MenuComponent } from './restaurant-detail/menu/menu.component'
@@ -10,6 +12,7 @@ import { NotFoundComponent } from './not-found/not-found.component'
 
 export const ROUTES: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'restaurants', component: RestaurantsComponent },
   {
     path: 'restaurants/:id', component: RestaurantDetailComponent,
@@ -22,7 +25,7 @@ export const ROUTES: Routes = [
   { path: 'order', loadChildren: './order/order.module#OrderModule' },
   { path: 'order-sumary', component: OrderSumaryComponent },
   { path: 'about', loadChildren: './about/about.module#AboutModule' },
-  
+
   //regra de wildcard --> precisa ficar no final pq é top-down
-  { path: '**', component: NotFoundComponent}
+  { path: '**', component: NotFoundComponent }
 ]
