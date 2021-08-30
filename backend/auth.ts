@@ -13,7 +13,7 @@ export const handleAuthentication = (req: Request, resp: Response) => {
                                                                                           desta forma nao compartilhamos o passw com o client ('meat-api-password') --> o que impede de gerar chaves
                                                                                         */
     resp.json({ name: dbUser.name, email: dbUser.email,// resposta da aplicacao
-      acessToken: token// passo o token na resposta para o usuario
+      accessToken: token// passo o token na resposta para o usuario
     })
   } else {
     resp.status(403).json({ message: 'Dados inválidos.' })

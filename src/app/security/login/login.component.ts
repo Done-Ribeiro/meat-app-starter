@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
                       .subscribe(user => 
                                   this.notificationService.notify(`Bem vindo, ${user.name}`),
                                 response => //HttpErrorResponse
-                                  this.notificationService.notify(response.error.message))                               
+                                  this.notificationService.notify(response.error.message))
   }
 
 }
