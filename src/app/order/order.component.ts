@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
 
 import { Router } from '@angular/router';
 
@@ -37,15 +37,25 @@ export class OrderComponent implements OnInit {
               private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.orderForm = this.formBuilder.group({
-      name: this.formBuilder.control('', [Validators.required, Validators.minLength(5)]),
+    this.orderForm = new FormGroup({
+      /*
+        para mudar o evento de atualizacao e validacao para blur || submit
+        podemos pegar estes validadores -> segundo parametro que passamos...
+        transformar em um objeto e passar algumas opcoes
+      */
+      name: new FormControl('', {
+        validators: [Validators.required, Validators.minLength(5)]
+        // , updateOn: 'blur'
+                          //ao mudar para blur --> a alteracao do model do form e a validacao (neste caso)
+                          //quando tirarmos o foco daquele campo
+      }),
       email: this.formBuilder.control('', [Validators.required, Validators.pattern(this.emailPattern)]),
       emailConfirmation: this.formBuilder.control('', [Validators.required, Validators.pattern(this.emailPattern)]),
       address: this.formBuilder.control('', [Validators.required, Validators.minLength(5)]),
       number: this.formBuilder.control('', [Validators.required, Validators.pattern(this.numberPattern)]),
       optionalAddress: this.formBuilder.control(''),
       paymentOption: this.formBuilder.control('', [Validators.required])
-    }, { validator: OrderComponent.equalsTo })
+    }, { validators: OrderComponent.equalsTo, updateOn: 'blur' })//assim o 'blur' e aplicado pra todos os campos do formGroup
   }
 
   static equalsTo(group: AbstractControl): {[key: string]: boolean} {
