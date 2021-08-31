@@ -15,6 +15,10 @@ import { LoginService } from 'app/security/login/login.service'
 import { LoggedInGuard } from 'app/security/loggedin.guard'
 import { LeaveOrderGuard } from 'app/order/leave-order.guard'
 
+//para registrar INTERCEPTOR predcisamos de um token expecifico
+import { HTTP_INTERCEPTORS } from '@angular/common/http'
+import { AuthInterceptor } from 'app/security/auth.interceptor'
+
 @NgModule({
   declarations: [
     InputComponent,
@@ -43,7 +47,12 @@ export class SharedModule {
         NotificationService,
         LoginService,
         LoggedInGuard,
-        LeaveOrderGuard
+        LeaveOrderGuard,
+        //configuracao provider do INTERCEPTOR
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }/*multi: true ==>
+                                                                                todos os interceptors que temos
+                                                                                serao feitos desta mesma maneira
+                                                                                e associados ao mesmo TOKEN*/
       ]
     }
   }
