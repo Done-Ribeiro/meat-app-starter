@@ -1,0 +1,15 @@
+<div class="navbar-custom-menu">
+  <ul class="nav navbar-nav">
+    <li class="user user-menu">
+      <!-- ngIf com else ==> "expressao ; else=> nome de uma variavel que aponte pra um template" -->
+      <span *ngIf="isLoggedIn(); else notLoggedIn">
+        Olá, {{user().name}} | <a (click)="logout()">Sair</a>
+      </span>
+      <!-- se cair no else entra aqui ==> associando com # (template variable) -->
+      <ng-template #notLoggedIn>
+        <a (click)="login()">Entrar</a>
+      </ng-template>
+
+    </li>
+  </ul>
+</div>
