@@ -8,7 +8,7 @@ import { CartItem } from 'app/restaurant-detail/shopping-cart/cart-item.model';
 import { OrderService } from './order.service';
 import { Order, OrderItem } from './order.model';
 
-import 'rxjs/add/operator/do'
+import { tap } from 'rxjs/operators'
 
 @Component({
   selector: 'mt-order',
@@ -99,14 +99,14 @@ export class OrderComponent implements OnInit {
       .map((item: CartItem) => new OrderItem(item.quantity, item.menuItem.id))
 
     this.orderService.checkOrder(order)
-      .do((orderId: string) => {
-        this.orderId = orderId//faz referencia pro orderId da compra
-      })
-      .subscribe((orderId: string) => {
-        
-        this.router.navigate(['/order-sumary'])
-        this.orderService.clear()
-      })
+        .pipe(
+          tap((orderId: string) => {
+            this.orderId = orderId//faz referencia pro orderId da compra
+          })
+        ).subscribe((orderId: string) => { 
+          this.router.navigate(['/order-sumary'])
+          this.orderService.clear()
+        })
   }
 
 }
