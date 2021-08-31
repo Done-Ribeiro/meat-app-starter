@@ -30,7 +30,9 @@ export class LoginService {
   }
 
   handleLogin(path?: string) {
-    this.router.navigate(['/login', path])
+    //recebe o (path).. se usuario estava no carrinho de comprar antes de estar logado ==> '/order' || '/'
+    //neste momento a url esta assim --> %2Forder ... vamos deixar mais amigavel codificando pra base64 --> btoa(path) ex: '/L29yZGVy'
+    this.router.navigate(['/login', btoa(path)])
   }
 
 }

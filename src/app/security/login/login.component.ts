@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
       password: this.fb.control('', [Validators.required])
     })
     //pegar referencia aos parametros da rota que ele iria ['to']--> /order || se ninguem passar rota --> navega pro / --> [/login]
-    this.navigateTo = this.activatedRoute.snapshot.params['to'] || '/'
+    this.navigateTo = this.activatedRoute.snapshot.params['to'] || btoa('/')//agora precisamos encodar aqui tambem btoa()
   }
 
   login() {
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
                                   this.notificationService.notify(response.error.message),
                                   //neste ponto o login deu certo e vamos navegar para esta rota
                                   ()=> {
-                                    this.router.navigate([this.navigateTo])
+                                    this.router.navigate([atob(this.navigateTo)])//add decodificacao da informacao
                                   })
   }
 
