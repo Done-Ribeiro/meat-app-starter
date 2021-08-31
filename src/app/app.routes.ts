@@ -28,6 +28,8 @@ export const ROUTES: Routes = [
   { path: 'restaurants', component: RestaurantsComponent },
   { path: 'order', loadChildren: './order/order.module#OrderModule',
       canLoad: [LoggedInGuard], canActivate: [LoggedInGuard] },
+  { path: 'order', loadChildren: './order/order.module#OrderModule',
+      canLoad: [LoggedInGuard], canActivate: [LoggedInGuard] },
   { path: 'order-sumary', component: OrderSumaryComponent },
   { path: 'about', loadChildren: './about/about.module#AboutModule' },
   //regra de wildcard --> precisa ficar no final pq é top-down
