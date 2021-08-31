@@ -54,7 +54,8 @@ export class OrderComponent implements OnInit {
       address: this.formBuilder.control('', [Validators.required, Validators.minLength(5)]),
       number: this.formBuilder.control('', [Validators.required, Validators.pattern(this.numberPattern)]),
       optionalAddress: this.formBuilder.control(''),
-      paymentOption: this.formBuilder.control('', [Validators.required])
+      paymentOption: new FormControl('', {
+        validators: [Validators.required], updateOn: 'change' })//mudamos pq um radio button n muda com 'blur' e sim com 'change'
     }, { validators: OrderComponent.equalsTo, updateOn: 'blur' })//assim o 'blur' e aplicado pra todos os campos do formGroup
   }
 
