@@ -6,6 +6,7 @@ import { ShoppingCartService } from './shopping-cart.service';
 @Component({
   selector: 'mt-shopping-cart',
   templateUrl: './shopping-cart.component.html',
+  preserveWhitespaces: true,//aqui é a nivel de componente.. aonde o compilador agora deixa os espacos como padrao do bootstrap
   animations: [
     trigger('row', [
       state('ready', style({ opacity: 1 })),

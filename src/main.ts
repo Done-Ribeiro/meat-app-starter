@@ -9,4 +9,5 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+platformBrowserDynamic().bootstrapModule(AppModule)
+// platformBrowserDynamic().bootstrapModule(AppModule, { preserveWhitespaces: true });//deixando aqui..ele deixara em toda a aplicacao
